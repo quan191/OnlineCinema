@@ -14,7 +14,7 @@ export default class Watch extends React.Component{
     render(){
         return <LiveWrapper>
             <LiveVid>
-                <Player/>
+                <Player />
             </LiveVid>
         </LiveWrapper>
     }
