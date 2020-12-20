@@ -8,6 +8,10 @@ const PlayerContent = styled.div`
 
 `
 export default class Player extends Component{
+    constructor(props){
+        super(props);
+        this._onTouchInsidePlayer=this._onTouchInsidePlayer.bind(this);
+    }
     componentDidMount(){
         console.log('component did mount');
         if(Hls.isSupported() && this.player) {
@@ -21,6 +25,14 @@ export default class Player extends Component{
             });
         }
     }
+    _onTouchInsidePlayer(){
+        if (this.player.paused){
+            this.player.play();
+        } 
+        else {
+            this.player.pause();
+        }
+    }
     render(){
         const style = {
             width : 640,
@@ -29,7 +41,7 @@ export default class Player extends Component{
         }
         return <PlayerWrapper>
             <PlayerContent>
-                <video style={style} ref={(player) => this.player=player} autoPlay={true}></video> 
+                <video controls={true} onClick={this._onTouchInsidePlayer} style={style} ref={(player) => this.player=player} autoPlay={true}></video> 
             </PlayerContent>
             
         </PlayerWrapper>
