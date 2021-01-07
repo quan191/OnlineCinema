@@ -1,30 +1,19 @@
 import React,{Component} from 'react'
 import styled from 'styled-components'
-import Hls from 'hls.js'
+import videojs from 'video.js'
+import VideoPlayer from 'react-video-js-player'
 const PlayerWrapper = styled.div`
     position : relative ;
 `
 const PlayerContent = styled.div`
 
 `
-export default class Player extends Component{
+export default class Vod extends Component{
     constructor(props){
         super(props);
         this._onTouchInsidePlayer=this._onTouchInsidePlayer.bind(this);
     }
     componentDidMount(){
-        const liveChannel = 'quanle'
-        console.log('component did mount');
-        if(Hls.isSupported() && this.player) {
-            const streamURL = `http://localhost:3002/live/${liveChannel}/index.m3u8`;
-            const video = this.player;
-            const hls = new Hls();
-            hls.loadSource(streamURL);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED,function() {
-                video.play();
-            });
-        }
     }
     _onTouchInsidePlayer(){
         if (this.player.paused){
@@ -40,9 +29,11 @@ export default class Player extends Component{
             height : 360,
             background : '#000',
         }
+        const videoSrc = "http://localhost:3003/hls/index.m3u8";
+        
         return <PlayerWrapper>
             <PlayerContent>
-                <video controls={false}  style={style} ref={(player) => this.player=player} autoPlay={true} muted={true}></video> 
+                <VideoPlayer src={videoSrc} width='720' height='420' type="application/x-mpegURL"/>
             </PlayerContent>
             
         </PlayerWrapper>

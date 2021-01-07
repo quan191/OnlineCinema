@@ -10,7 +10,6 @@ const LiveVid = styled.div`
     justify-content: center;
 `
 export default class Watch extends React.Component{
-
     render(){
         return <LiveWrapper>
             <LiveVid>

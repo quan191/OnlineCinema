@@ -1,5 +1,6 @@
 import React from 'react'
 import Watch from './watch'
+import Vod from './vod'
 import {Route, Switch} from 'react-router-dom'
 import styled from 'styled-components'
 import {borderColor, headerHeight, containerMaxWidth} from "./theme";
@@ -50,6 +51,7 @@ export default class App extends React.Component{
                 <Container>
                     <Switch>
                         <Route exact path={'/watch/:id'} component={Watch}/>
+                        <Route exact path={'/vod'} component ={Vod}/>
                     </Switch>
                 </Container>
             </Main>
